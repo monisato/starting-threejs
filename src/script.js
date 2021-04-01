@@ -1,12 +1,13 @@
 import './style.css'
-import * as THREE from 'three'
+// import * as THREE from 'three'
+import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 
 // Loading
 const textureLoader = new THREE.TextureLoader()
 
-const normalTexture = textureLoader.load('/textures/NormalMap.png')
+const sphereNormalTexture = textureLoader.load('/textures/NormalMap.png')
 
 // Debug
 // const gui = new dat.GUI()
@@ -18,19 +19,19 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // Objects
-const geometry = new THREE.SphereBufferGeometry(.5, 64, 64)
+const sphereGeometry = new THREE.SphereBufferGeometry(.5, 64, 64)
 
 // Materials
 
-const material = new THREE.MeshStandardMaterial()
-material.metalness = 0.7
-material.roughness = 0.2
-material.normalMap = normalTexture;
+const sphereMaterial = new THREE.MeshStandardMaterial()
+sphereMaterial.metalness = 0.7
+sphereMaterial.roughness = 0.2
+sphereMaterial.normalMap = sphereNormalTexture;
 
-material.color = new THREE.Color(0x292929)
+sphereMaterial.color = new THREE.Color(0x292929)
 
 // Mesh
-const sphere = new THREE.Mesh(geometry,material)
+const sphere = new THREE.Mesh(sphereGeometry,sphereMaterial)
 scene.add(sphere)
 
 // Lights
